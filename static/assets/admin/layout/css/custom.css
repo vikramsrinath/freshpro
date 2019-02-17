@@ -1,0 +1,291 @@
+/* here you can put your own css to customize and override the theme */
+
+/***
+Rounded Portlets
+***/
+/*
+.portlet {
+	border-radius: 4px !important;
+}
+
+.portlet .portlet-title {
+	border-radius: 4px 4px 0px 0px !important;
+}
+
+.portlet .portlet-body,
+.portlet .portlet-body .form-actions  {
+	border-radius: 0px 0px 4px 4px !important;
+}
+*/
+
+/*
+Change Quick Sidebar Width
+*/
+
+/*
+.page-quick-sidebar-wrapper {
+  right: -370px;
+  width: 370px;
+}
+
+.page-quick-sidebar-open.page-quick-sidebar-push-content .page-sidebar-wrapper {
+  margin-left: -370px;
+}
+
+.page-quick-sidebar-open.page-quick-sidebar-push-content .page-footer {
+  margin-right: 370px;
+  margin-left: -370px;
+}
+
+.page-sidebar-reversed.page-quick-sidebar-open.page-quick-sidebar-push-content .page-sidebar-wrapper {
+  margin-right: 370px;
+}
+
+.page-quick-sidebar-open.page-quick-sidebar-push-content.page-quick-sidebar-full-height .page-header {
+  margin-left: -370px;
+}
+
+.page-quick-sidebar-wrapper .page-quick-sidebar .page-quick-sidebar-list {
+  width: 370px !important;
+}
+
+.page-quick-sidebar-wrapper .page-quick-sidebar .page-quick-sidebar-item {
+  width: 370px !important;
+  margin-left: 370px;
+}
+
+.page-quick-sidebar-wrapper .page-quick-sidebar .page-quick-sidebar-content-item-shown .page-quick-sidebar-list {
+  margin-left: -370px;
+}
+*/
+
+/* new css added by shamim */
+.page-header.navbar {background-color: #132431; height:51px; min-height:51px;}
+body, .page-sidebar {background-color: #132431;}
+.page-header.navbar {background-color: #132431; height:51px; min-height:51px;}
+.page-header.navbar .page-logo {width:265px; height:auto;}
+/*.page-header.navbar .page-logo .logo-default {margin: -5px 0 30px -7px;width: 20%;}*/
+.page-header.navbar .page-logo .logo-default {margin:4px 4px 30px -7px;width: 56%;}
+.page-header-fixed .page-container {margin-top:51px;}
+.page-header.navbar .top-menu .navbar-nav > li.dropdown {height:51px;}
+.page-header.navbar .top-menu .navbar-nav > li.dropdown-user .dropdown-toggle {padding:19px 6px 19px 8px;}
+#example_length {float:left;}
+.dataTables_filter input[type=search] {border: 1px solid #ccc; font-size: 14px; line-height: 25px;}
+.page-sidebar .sidebar-search .input-group {border-bottom: 1px solid #FFF;}
+.page-sidebar .sidebar-search .input-group input[type=text] {background: transparent; color: #FFFFFF;}
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a, .page-sidebar .page-sidebar-menu > li > a {color:#FFF; border-bottom:1px solid #018d73;}
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a, .page-sidebar .page-sidebar-menu > li:hover > a, .page-sidebar .page-sidebar-menu > li.open > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li > a > .arrow:before, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li > a > .arrow.open:before, .page-sidebar .page-sidebar-menu li > a > .arrow:before, .page-sidebar .page-sidebar-menu li > a > .arrow.open:before {color:#FFF;}
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .sidebar-toggler, .page-sidebar .sidebar-toggler {
+    background: url(../img/sidebar_inline_toggler_icon_default.jpg);} 
+.navbar-nav>li>a {color:#00896f;}
+.renderbutton {border:1px solid #d2d3d4; display:inline-block; background:#e9eaed}
+.renderbutton ul {display:inline-block; margin-bottom:0px; padding-left:0px;}
+.renderbutton ul li {display:inline-block; margin-left:-3px; border-right:1px solid #d2d3d4;}
+.renderbutton ul li a {display:block; text-align:center; padding:0 8px; line-height:29px; text-decoration:none; color:#333;}
+.renderbutton ul li a:hover {background-color:#e0e0e0;}
+.renderbutton ul li a .fa {font-size:16px;}
+.marginbttm10 {margin-bottom:10px;}
+.renderbutton ul li:first-child {margin-left:0px;}
+.renderbutton ul li:last-child {border-right:0px;}
+.dataactionlist {list-style-type:none; margin:0px; padding:0px;}
+.dataactionlist li {display:inline-block; padding-right:1px;}
+.dataactionlist li a {display:inline-block; padding:0 1px; line-height:20px; color:#787878}
+.dataactionlist li a:hover {color:#333;}
+
+.dataactionlist-table {margin:0px; padding:0px;}
+.dataactionlist td a {display:inline-block; padding:0 1px; line-height:20px; color:#787878}
+.dataactionlist td a:hover {color:#333;}}
+
+#example thead {
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #ffffff 0%, #f5f5f5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f5f5f5));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#f5f5f5 100%);
+    background: -o-linear-gradient(top, #ffffff 0%,#f5f5f5 100%);
+    background: -ms-linear-gradient(top, #ffffff 0%,#f5f5f5 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#f5f5f5 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5',GradientType=0 );
+}
+#example tr td, #example tr th {padding:2px 5px; font-size: 12px;width: auto !important;}
+#example tr td {vertical-align: middle;}
+.no-sort { pointer-events: none!important; cursor: default!important; }
+.no-sort:after {content:"" !important;}
+.page-container-bg-solid .page-content {background-color:#FFF;}
+.page-container-bg-solid .page-title {margin-top:0px;}
+#example_filter label {/*text-indent:-2000px;*/}
+#example_wrapper {position:relative;}
+#example_wrapper #example_length {content:"search"; position:absolute; bottom:0px;}
+#example_wrapper #example_info {display:none;}
+div.ColVis {margin-left:12px;}
+.positionrow {position:absolute; z-index:5;}
+.my-groupunits {width:100%;}
+.my-groupunits input[type=text]{width: calc(100% - 60px);}
+.my-groupunits select {width:60px !important; padding:0px;}
+.my-groupfdunits {width:100%;}
+.my-groupfdunits input[type=text]{width: calc(100% - 70px);}
+.my-groupfdunits span {width:70px !important; padding:6px 0; line-height:34px}
+
+.my-groupunits70 {width:100%;}
+.my-groupunits70 input[type=text]{width: calc(100% - 70px);}
+.my-groupunits70 select {width:70px !important; padding:0px;}
+.middle_headerbtn {float: right !important;margin-top: 20px;}
+.border-top {border-top: 1px solid #e5e5e5;}
+.pt30 {padding-top: 30px;}
+a.btn-success i.fa-plus {margin-right:5px;}
+
+/* colvis customize css */
+ul.ColVis_collection {padding:0px !important;}
+button.ColVis_Button, ul.ColVis_collection li {margin-bottom: 0px !important; padding: 0.3em !important;}
+ul.ColVis_collection li label {margin-bottom: 0px !important}
+ul.ColVis_collection li input[type="checkbox"], ul.ColVis_collection li input[type="radio"] {}
+.inputform {border:1px solid #ccc; width:100%; padding: 4px; background:transparent;}
+.calcposiglb {position: relative; display: inline-block; width:42%;}
+.calcposiglb img {position: absolute; right:5px; top:7px; z-index: -1}
+.loginhead {/*background-color:#132431;*/ height:100px;}
+.loginhead .logo {margin-top:0px;}
+.loginbackgrnd {
+/* background: #060201 url("../img/login_bg.jpg") no-repeat fixed center top / cover ;
+    color: #919191;
+    font: 14px/18px "Open Sans",sans-serif;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+} */
+.login .content {background-color:#FFF; margin:80px auto 10px auto;}
+.login .content .create-account {background-color:#007f66;}
+.login .content .create-account a {color:#FFF !important ;}
+.loginbackgrnd .copyright {color:#FFF;}
+
+
+/* loader */
+a.moreFeeds .btnGrayLight-wrap {
+    display: block;
+    margin-bottom: -29px
+}
+
+a.moreFeeds .btnGrayLight-wrap+.loading-new-spinner {
+    float: right;
+    margin-top: -17px
+}
+
+a.moreFeeds .btnGrayLight-wrap+.loading-new-spinner .ht-spinner-wrap {
+    -webkit-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    transform: scale(0.6)
+}
+
+a.moreFeeds .label {
+    margin-left: 288px;
+    float: left;
+    width: 77px;
+    line-height: 46px
+}
+
+a.moreFeeds .label.fullwidth {
+    margin-left: 445px
+}
+
+.loading {
+    background: transparent url(/resources/design/loader16new_1468503587.gif) no-repeat right 0;
+    padding-right: 20px;
+    width: 16px;
+    height: 16px
+}
+
+.loading_spinner {
+    background: transparent url(/resources/design/loader16new_1468503587.gif) no-repeat right 0;
+    padding-right: 103px;
+    width: 16px;
+    height: 16px
+}
+
+.loading.search-loader {
+    background: transparent url(../img/oader32new_1468503587.gif) no-repeat right 0;
+    width: 32px;
+    height: 32px
+}
+
+.loading-new-spinner .ht-spinner-wrap {
+    display: inline-block
+}
+
+
+
+
+
+
+@-webkit-keyframes roll {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
+}
+
+@keyframes roll {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
+}
+
+.ht-spinner-wrap {
+  
+    width: 50px;
+    height: 50px;
+    position: relative
+}
+
+.ht-spinner-wrap .ht-spinner {
+    width: inherit;
+    height: inherit;
+    position: relative;
+    -webkit-animation: roll 1s infinite linear;
+    animation: roll 1s infinite linear;
+    border: 2px solid #02add7;
+    border-top-color: #efefef;
+    -webkit-border-radius: 100% !important;
+    -moz-border-radius: 100% !important;
+    border-radius: 100%  !important
+}
+
+.ht-spinner-wrap:after {
+    content: '';
+    display: block;
+    background-image: url(../img/logo_1476016316.svg);
+    background-size: 21px 24px;
+    width: 21px;
+    height: 24px;
+    position: absolute;
+    left: 14px;
+    top: 13px;
+    -webkit-opacity: .3;
+    -moz-opacity: .3;
+    opacity: .3
+}
+
+.dataTables_wrapper .dataTables_filter { width: 285px;}
+.dataTables_filter label {display:block;}
+.dataTables_filter input[type="search"] {width:100%;}
+.deletbg {background-color:#8B0000; color:#fff; padding: 0 3px}
+.activebg {background-color:#32CD32; color:#fff; padding: 0 3px}
+.pendingbg {background-color:red; color:#fff; padding: 0 3px}
+.formconttop { border-top: 1px solid #e5e5e5; padding: 35px 0}
+.searchboxmadeadj {position: absolute; top:-3px; left: 15px; width: 60%; z-index: 10}
+
+.inputError, .inputError:focus {
+
+    border: 2px solid red!important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .075) inset, 0 0 6px #ce8483;
+}
+.error-message{
+  color: red !important;
+}
+.printcont {border:5px solid #FF0000 !important;}

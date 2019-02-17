@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<meta charset="utf-8" />
+<title>PEnhancer - {% block title %}How to Tango with Django!{% endblock %}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/plugins/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/plugins/uniform/css/uniform.default.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/admin/pages/css/login.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/css/components.css' %}" id="style_components" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/css/plugins.css ' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/admin/layout/css/layout.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/admin/layout/css/themes/darkblue.css' %}" rel="stylesheet" type="text/css" id="style_color" />
+<link href="{% static 'assets/admin/layout/css/custom.css' %}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+
+<!-- END THEME STYLES -->
+
+<!-- <script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'js/jquery.ui.datepicker.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/../js/colorbox/colorbox.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css' %}" />
+<script type="text/javascript" src="{% static 'js/colorbox/jquery.colorbox.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.blockUI.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.validate.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.redirect.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/penhancer-ajax.js' %}"></script>
+
+<style type="text/css">
+    html,
+    body {
+        height: 100%;
+    }
+</style>
+
+</head>
+
+<body class="login loginbackgrnd">
+    <div class="menu-toggler sidebar-toggler"></div>
+    <div class="loginhead">
+        <div class="logo">
+            <!-- <h3>Profit Enhancer</h3> -->
+            <a href="/"><img src="{% static 'assets/admin/layout/img/Logo.jpg' %}" width="10%" height="10% alt=""/></a>
+        </div>
+    </div>
+
+    <div class="
+                    content">
+                {% block body_block %}
+                {% endblock %}
+        </div>
+        <!-- <div class="copyright">
+        2017 © PEnhancer
+    </div> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(document).on('keypress', '.alpha', function (event) {
+                    var regex = new RegExp("^[a-zA-z ]+$");
+                    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                    if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                        return true;
+                    }
+                    if (!regex.test(key)) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+                $(document).on('keypress', '.username', function (event) {
+                    var regex = new RegExp("^[a-zA-z0-9]+$");
+                    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                    if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                        return true;
+                    }
+                    if (!regex.test(key)) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+                $(document).on('keypress', '.alphanumeric', function (event) {
+                    var regex = new RegExp("^[a-zA-z0-9 ]+$");
+                    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                    if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                        return true;
+                    }
+                    if (!regex.test(key)) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+                $(document).on('keypress', '.numeric', function (event) {
+                    var regex = new RegExp("^[0-9.]+$");
+                    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                    if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                        return true;
+                    }
+                    if (event.which == 46 && $(this).val().indexOf('.') != -1) {
+                        event.preventDefault();
+                        return false;
+                    }
+                    if (!regex.test(key)) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+                $(document).on('keypress', '.mobile', function (event) {
+                    var regex = new RegExp("^[0-9]+$");
+                    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                    if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                        return true;
+                    }
+                    if (!regex.test(key)) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+                $(document).on('keypress', '.phone', function (event) {
+                    var regex = new RegExp("^[0-9-]+$");
+                    var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                    if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                        return true;
+                    }
+                    if (event.which == 45 && $(this).val().indexOf('-') != -1) {
+                        event.preventDefault();
+                        return false;
+                    }
+                    if (!regex.test(key)) {
+                        event.preventDefault();
+                        return false;
+                    }
+                });
+            });
+        </script>
+        <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+
+</html>

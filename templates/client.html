@@ -1,0 +1,339 @@
+{% extends "layout/admin.html" %}
+
+{% block title %}PEnhancer Admin Panel|Client{% endblock %}
+
+{% block body_block %}
+<style>
+  .no-sort { pointer-events: none!important; cursor: default!important; }
+.no_paginate{bottom:-50px!important;}
+.btn-xs {
+font-size: 13px;
+line-height: 1.5;
+padding: 3px 21px 5px;
+width: 350px;
+}
+</style>
+
+<div class="row">
+  <div class="col-sm-6">
+    <h3 class="page-title">Client List</h3>
+  </div>
+  {% if editclient %}
+  <div class="col-sm-6 text-right">
+    <!-- <a href="/client/" class="btn btn-success"><i class="fa fa-plus"></i>Create Client</a> -->
+  </div>
+  {% endif %}
+</div>
+<div class="row">
+  <div class="text-center">
+    {% if messages %}
+    <div class="col-md-12 col-sm-12 messages">
+      {% for message in messages %}
+      <span {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="col-md-12 col-sm-12" style="background:#A4A4A4">
+    <div class="row">
+      {% if editclient %}
+      {% for row in editclient %}
+      <div class="col-md-12 col-sm-12">
+        <form id="clientadd" action="/client/" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+          <input id="id" name="id" autocomplete="off" value="{{row.id}}" type="hidden">
+          <input id="opt" name="opt" value="Edit" type="hidden">
+          <!-- {% csrf_token %} -->
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="disabledTextInput">Client Name <span style="color:red">*</span>:</label>
+                <input name="client_name" autocomplete="off" class="form-control validate alpha" value="{{row.client_name}}"
+                  id="client_name" required="required" type="text">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="disabledTextInput">industry <span style="color:red">*</span>:</label>
+
+
+                <select name="industry">
+                  {% for industry in industry_list %}
+                  {% ifequal industry.id selected_industry.id %}
+                  <option value="{{industry.id}}" selected="selected">
+                    {{industry.industry_name}}</option>
+                  {% else %}
+                  <option value="{{industry.id}}">{{industry.industry_name}}</option>
+                  {% endifequal %}
+                  {% endfor %}
+                </select>
+
+                <!-- <label for="disabledTextInput">ISO Code <span style="color:red">*</span>:</label>
+                <input name="iso_code" autocomplete="off" class="form-control validate alpha" value="{{row.iso_code}}"
+                  id="iso_code" required="required" type="text"> -->
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="middle_headerbtn">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary grey-cascade" onclick="myFunction()">Cancel</button>
+                </div>
+                <button type="submit" class="btn btn-success" formnovalidate="formnovalidate">Update</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      {% endfor %}
+      {%else%}
+      <div class="col-md-12 col-sm-12">
+        <form id="clientadd" action="/client/" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+          <input id="opt" name="opt" value="Add" type="hidden">
+
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="disabledTextInput">Client Name <span style="color:red">*</span>:</label>
+                <input name="client_name" autocomplete="off" class="form-control validate alpha" value="" id="client_name"
+                  required="required" type="text">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <select name="industry" required="required">
+                  <option value="">----------------</option>
+                  {% for industry in industry_list %}
+                  <option value="{{ industry.id }}">{{ industry.industry_name }}</option>
+                  {% endfor %}
+                </select>
+                <!-- <select name="movie">
+                  {% for industry in industry_list %}
+                  {% ifequal industry.id selected_industry.id %}
+                  <option value="{{industry.key}}" selected="selected">Movie {{industry.id}}:
+                    {{industry.industry_name}}</option>
+                  {% else %}
+                  <option value="{{industry.key}}">industry {{industry.id}}: {{industry.industry_name}}</option>
+                  {% endifequal %}
+                  {% endfor %}
+                </select> -->
+                <!-- <label for="disabledTextInput">ISO Code <span style="color:red">*</span>:</label>
+                <input name="iso_code" autocomplete="off" class="form-control validate alpha" value="" id="iso_code"
+                  required="required" type="text"> -->
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="middle_headerbtn">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary grey-cascade" onclick="myFunction()">Cancel</button>
+                </div>
+                <button type="submit" class="btn btn-success" formnovalidate="formnovalidate">Save</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      {%endif%}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+      <div class="col-md-12 col-sm-12">
+        <div class="row positionrow">
+          <div class="renderbutton">
+            <ul>
+              <li><a onclick="javascript:changequotestatus('Delete');" href="javascript:void(0);" alt="Delete" title="Delete"><i
+                    class="fa fa-times" aria-hidden="true"></i></a></li>
+              <li><a onclick="javascript:changequotestatus('Disable');" href="javascript:void(0);" alt="Deactive" title="Deactive"><i
+                    class="fa fa-power-off red" aria-hidden="true"></i></a></li>
+              <li><a onclick="javascript:changequotestatus('Enable');" href="javascript:void(0);" alt="Active" title="Active"><i
+                    class="fa fa-power-off green" aria-hidden="true"></i></a></li>
+              <li><a href="#" onclick="window.location.reload(true);" alt="Refresh" title="Refresh"><i class="fa fa-refresh"
+                    aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <table id="example" class="table table-striped table-bordered dataTable" role="grid" aria-describedby="example_info"
+            style="width: 100%;" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th data-orderable="false" style="background:#fff!important;"><input type="checkbox" onchange="checkAll()"
+                    name="select_all" id="select_all" /> </th>
+                <th data-orderable="false" style="background:#fff!important;">Action</th>
+                <th>Name</th>
+                <th>Industry</th>
+                <th>Status</th>
+                <!-- <th>ISO</th> -->
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in client_list %}
+              <tr>
+                <td><input class="checkall" id="checkquote_id" type="checkbox" name="state_id[]" value="{{row.id}}"></td>
+                <td>
+                  <ul class="dataactionlist">
+                    <li><a title="Edit" href="/editclient/{{row.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                    <li>
+                      <form id="MasterDelete{{row.id}}" action="/client/" name="MasterDelete" method="post">
+                        <input id="id" name="id" value="{{row.id}}" type="hidden">{% csrf_token %}<input id="opt" name="opt"
+                          value="Delete" type="hidden">
+                        <a title="Delete" href="javascript:if(confirm('You are about to delete an item. Continue?')) {document.forms['MasterDelete{{row.id}}'].submit();};"><i
+                            class="fa fa-times" aria-hidden="true"></i></a></form>
+                    </li>
+                    {% if row.is_active == '1' %}
+                    <li>
+                      <form id="MasterChangeStatus{{row.id}}" action="/client/" name="MasterChangeStatus" method="post">
+                        <input id="id" name="id" value="{{row.id}}" type="hidden">{% csrf_token %}<input id="opt" name="opt"
+                          value="ChangeStatus" type="hidden"><input id="is_active" name="is_active" value="0" type="hidden">
+                        <a href="javascript:if(confirm('Are you sure to Change status')) {document.forms['MasterChangeStatus{{row.id}}'].submit();};"
+                          alt="Deactive" title="Deactive">
+                          <i class="fa fa-power-off red" aria-hidden="true"></i></a></form>
+                    </li>
+                    {% else %}
+                    <li>
+                      <form id="MasterChangeStatus{{row.id}}" action="/client/" name="MasterChangeStatus" method="post">
+                        <input id="id" name="id" value="{{row.id}}" type="hidden">{% csrf_token %}<input id="opt" name="opt"
+                          value="ChangeStatus" type="hidden"><input id="is_active" name="is_active" value="1" type="hidden">
+                        <a href="javascript:if(confirm('Are you sure to Change status')) {document.forms['MasterChangeStatus{{row.id}}'].submit();};"
+                          alt="Active" title="Active"><i class="fa fa-power-off green" aria-hidden="true"></i></a></form>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </td>
+                <td>{{row.client_name}}</td>
+                <td>{{row.industry_name}}</td>
+                <td>
+                  {% if row.is_active == '0' %}
+                  <span class="pendingbg">Deactive</span>
+                  {% else %}
+                  <span class="activebg">Active</span>
+                  {% endif %}
+                </td>
+
+                <!-- <td>{{row.iso_code}}</td> -->
+              </tr>
+
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <style type="text/css">
+    .errmsg {
+      color: #FF0000;
+      margin-right: 200px;
+      float: right;
+      text-align: left;
+    }
+
+    #clientadd label.error {
+      width: auto;
+      display: block;
+      color: #FF0000;
+      margin-left: 0px;
+      clear: both;
+      margin-top: 2px;
+    }
+  </style>
+  <script type="text/javascript" class="init">
+    $(document).ready(function () {
+      $("#clientadd").validate({
+        rules: {
+          client_name: "required",
+        },
+        messages: {
+          client_name: "Please enter Client Name",
+        }
+      })
+    });
+    $(document).ready(function () {
+      $('#example').DataTable({
+        "ordering": true,
+        dom: 'C<"clear">lfrtip',
+        colVis: {
+          "align": "right",
+          exclude: [0, 1]
+        },
+        "lengthMenu": [[50, 100, 200, -1], [50, 100, 200, "All"]],
+        "pageLength": 50,
+        "order": []
+      });
+      var rowCount = $('#example >tbody >tr').length;
+      if (rowCount < 50) {
+        $("#example_length").addClass("no_paginate");
+        $('#example_paginate').hide();
+      }
+    });
+    function delete_confirm() {
+      var status = confirm('Do you really want to Delete?');
+      if (status == false) {
+        return false;
+      }
+      else {
+        $("#MasterDeleteQuoteListAjaxForm").submit();
+      }
+
+    }
+    function checkAll() {
+      var checkboxes = document.getElementsByTagName('input');
+      var val = null;
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].type == 'checkbox') {
+          if (val === null) val = checkboxes[i].checked;
+          checkboxes[i].checked = val;
+        }
+      }
+    }
+  </script>
+  <script>
+    $(document).ready(function () {
+      var table = $('#example').DataTable();
+      $('div.dataTables_filter input').attr('placeholder', 'Search...');
+    });
+
+  </script>
+
+  <script type="text/javascript" class="init">
+
+    function checkAll() {
+      var checkboxes = document.getElementsByTagName('input');
+      var val = null;
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].type == 'checkbox') {
+          if (val === null) val = checkboxes[i].checked;
+          checkboxes[i].checked = val;
+        }
+      }
+    }
+    function changequotestatus(action) {
+      // alert(action);
+      var selectedArray = [];
+      var jsonarr = '';
+      var csrfmiddlewaretoken = $("input[name=csrfmiddlewaretoken]").val();
+      $('.checkall:checked').each(function () {
+        selectedArray.push(parseInt($(this).val()));
+      });
+      if (selectedArray.length == 0) {
+        alert('Please select at least one record.');
+        return false;
+      }
+      jsonarr = JSON.stringify(selectedArray);
+      var r = confirm("Are you sure you want to perform " + action + " action?");
+      if (r == true) {
+        $.redirect('/changeclientaction/', { 'ids': jsonarr, 'opt': action, 'csrfmiddlewaretoken': csrfmiddlewaretoken });
+      }
+      //alert(JSON.stringify(selectedArray));
+    }
+    function myFunction() {
+      window.location.assign("/client/")
+    }
+  </script>
+  {% endblock %}

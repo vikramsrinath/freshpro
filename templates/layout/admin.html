@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" class="no-js">
+
+<head>
+    <title>PEnhancer - {% block title %}Try PEnhancer{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link href="{% static 'assets/admin/layout/css/custom.css' %}" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/global/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/global/plugins/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/global/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/global/plugins/uniform/css/uniform.default.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/global/plugins/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'assets/global/css/components.css' %}" id="style_components" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/global/css/plugins.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/admin/layout/css/layout.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/admin/layout/css/themes/darkblue.css' %}" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="{% static 'assets/admin/layout/css/custom.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/global/plugins/datatables/jquery.dataTables.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/global/plugins/datatables/dataTables.colVis.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/admin/layout/css/accordion.css' %}" />
+    <!-- END THEME STYLES -->
+
+    <script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.datepicker.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/../js/colorbox/colorbox.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css' %}" />
+    <script type="text/javascript" src="{% static 'js/colorbox/jquery.colorbox.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.blockUI.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.validate.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.redirect.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/penhancer-ajax.js' %}"></script>
+    <script type="text/javascript" src="https://jchamill.github.io/jquery-quiz/jquery.quiz-min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.dependent-questions.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/accordion.min.js' %}"></script>
+
+</head>
+
+<style>
+    /* Dropdown Button */
+.dropbtn {
+    background: #3e8e41;
+    color: white;
+    padding: 16px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+.desc{
+    max-width: 300px!important;
+    display: block!important;
+    word-break: break-word !important;
+    white-space: nowrap;
+    overflow: hidden;
+    o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.messages{
+    background: #53D1CC;
+  list-style-type: none;
+}
+.error-message {
+    color: #A94442!important;
+}
+.success {
+    color: #360!important;
+    font-weight: 800;
+}
+.error {
+    color: #A94442!important;
+    font-weight: 800;
+}
+input[type='file'] {
+  color: transparent;
+}
+input.file
+  {
+  
+    font-weight:bold;
+    z-index:1;
+    width:92px;
+    height:35px;
+    font-size:10px;
+    /*background-color: #fff;*/
+    border: 0px solid #e5e5e5;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+  }
+
+</style>
+
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+
+<body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo page-container-bg-solid">
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <a href="/dashboard/"><img src="{% static 'assets/admin/layout/img/Logo.jpg' %}" alt="logo" class="logo-default" /></a>
+                <div class="menu-toggler sidebar-toggler hide">
+                </div>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"></a>
+            <div class="top-menu">
+                <div class="dropdown">
+                    <button onclick="admindropdownmenu()" class="dropbtn"><b>Welcome
+                            {% if user.get_username %}
+                            {{ user.get_username }}
+                            {% else %}
+                            {% for row in user %}
+                            {{ row.username}}
+                            {%endfor%}
+                            {% endif %}
+                        </b></button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="/profile/{% if user.id %}{{ user.id }}{% else%}1/{% endif %}">Account Settings</a>
+                        <a href="/changepassword/">Change Password</a>
+                        <a href="/logout/">Logout</a>
+                    </div>
+                </div>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <div id="blockui" class="ht-spinner-wrap dib ng-scope" style="display:none">
+        <div class="ht-spinner sl-spinner"></div>
+    </div>
+    <!-- END HEADER -->
+    <div class="clearfix"></div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+
+
+        <div class="page-sidebar-wrapper">
+            <div class="page-sidebar navbar-collapse collapse">
+                <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="sidebar-toggler-wrapper">
+                        <div class="sidebar-toggler"></div>
+                    </li>
+                    <li style="display:none"><a href="javascript:;"><i class="icon-rocket"></i><span class="title">Feeds
+                            </span><span class="arrow "></span></a>
+                        <ul class="sub-menu">
+                            <li><a href="/news/"> News </a></li>
+                            <li><a href="/featured_lend/"> Featured Lends </a></li>
+                            <li><a href="/pointtransaction/"> Point Transaction </a></li>
+
+                        </ul>
+                    </li>
+                    <li style="display:none"><a href="#"><i class="fa fa-indent" aria-hidden="true"></i><span class="title">Catlog</span><span
+                                class="arrow "></span></a>
+                        <ul class="sub-menu">
+                            <li><a href="/categorylist/">Category</a></li>
+                            <li><a href="/brandlist/">Brand</a></li>
+                            <li><a href="/modellist/">Model</a></li>
+                            <li><a href="/productlist/">Product</a></li>
+
+                        </ul>
+                    </li>
+                    <li style="display:none"><a href="javascript:;"><i class="fa fa-shopping-cart"></i><span class="title">
+                                Transaction
+                            </span><span class="arrow "></span></a>
+                        <ul class="sub-menu">
+                            <li><a href="/lend_list/"> Lend </a></li>
+                            <li><a href="/damamage_collect/"> Damage Collection</a></li>
+                            <li><a href="/productreview/"> Review </a></li>
+                            <!--  <li><a href="/chatroom/"><i class="fa fa-wechat"></i><span class="title">Chat {% if unread_chat > 0 %}<span style="color: red;font-weight: bold;font-size: 12px;background-color: #fff;border-radius: 50% !important;width: 10px;height: 10px;padding: 0px 5px;margin-top: 0px;top: -7px;position: relative;margin-left: 5px;">{{unread_chat}}</span>{% endif %}</span></a></li> -->
+                            <!--                             <li><a href="/order_list/"> Order </a></li>
+                            <li><a href="/ship_detail/">Shipping </a></li> -->
+                        </ul>
+                    </li>
+                    <!--   <li><a href="javascript:;"><i class="fa fa-shopping-cart"></i><span class="title"> Order </span><span class="arrow "></span></a>
+                        <ul class="sub-menu">
+                            <li><a href="/order_list/"> Order </a></li>
+                            <li><a href="/ship_detail/">Shipping </a></li>
+                        </ul>
+                    </li> -->
+                    <li style="display:none"><a href="javascript:;"><i class="fa fa-pie-chart"></i><span class="title">
+                                Account </span><span class="arrow "></span></a>
+                        <ul class="sub-menu">
+                            <!-- <li><a href="/neighborhood_watch/"> Neighborhood Watch </a></li> -->
+                            <!-- <li>
+                                <a href="javascript:;"><span class="title"> Neighborhood</span><span class="arrow "></span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="/report_damage/"> Report Damage </a></li>
+                                    <li><a href="/report_lostitem/"> Report Lost Item </a></li>
+                                    <li><a href="/report_froud_abouse/"> Report Froud Or Abouse</a></li>
+                                </ul>
+                            </li> -->
+
+                            <li><a href="/credicardlist/"> Credit Card List </a></li>
+                            <li><a href="/order_list/"> Payment Details </a></li>
+                            <li><a href="/ship_detail/">Shipping Details </a></li>
+                            <li><a href="/change_point_transaction/">Points </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                    <li><a href="/createassessment/">
+                            <i class="icon-user"></i>
+                            <span class="title">Create Assessment</span>
+                        </a></li>
+                    <li><a href="/viewassessment/">
+                            <i class="icon-user"></i>
+                            <span class="title">View Past Assessment</span>
+                        </a></li>
+                    <li><a href="/compareassessment/">
+                            <i class="icon-user"></i>
+                            <span class="title">Compare Assessment</span>
+                        </a></li>
+                    <li><a href="/userlist/">
+                            <i class="icon-user"></i>
+                            <span class="title">Print Assessment</span>
+                        </a></li>
+                    <ul class="sub-menu">
+                        <li><a href="/userlist/">User List</a></li>
+                        <li><a href="/adduser/">New User </a></li>
+                    </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-user"></i>
+                            <span class="title">User Management</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="/userlist/">User List</a></li>
+                            <li><a href="/adduser/">New User </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-wrench"></i><span class="title">Configuration</span><span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <!-- <li><a href="/industry/">Industry</a></li> -->
+                            <li><a href="/client/">Client</a></li>
+                            <!-- <li><a href="/country/">Country</a></li> -->
+                            <!-- <li><a href="/LoanforDay/">Loan For Day</a></li>
+                            <li><a href="/PointAllotment/">Point Allotment</a></li>
+                            <li><a href="/MasterRatings/">Master Ratings</a></li>
+                            <li><a href="/TransactionMasterPoint/">PEnhancer Score</a></li> -->
+                        </ul>
+                    </li>
+                    <li style="display:none"><a href="/chatroom/"><i class="fa fa-wechat"></i><span class="title">Chat
+                                {% if unread_chat > 0
+                                %}<span style="color: red;font-weight: bold;font-size: 12px;background-color: #fff;border-radius: 50% !important;width: 10px;height: 10px;padding: 0px 5px;margin-top: 0px;top: -7px;position: relative;margin-left: 5px;">{{unread_chat}}</span>{%
+                                endif %}</span></a></li>
+
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+        </div>
+
+
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                {% block body_block %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <!-- END CONTENT -->
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <!-- <div class="page-footer-inner">2016 &copy; PEnhancer.</div> -->
+        <div class="scroll-to-top"><i class="icon-arrow-up"></i></div>
+    </div>
+    <!-- END FOOTER -->
+
+    <!--<script src="{% static 'assets/global/plugins/jquery.min.js" type="text/javascript"></script>-->
+    <script src="{% static 'assets/global/plugins/jquery-migrate.min.js' %}" type="text/javascript"></script>
+    <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+    <script src="{% static 'assets/global/plugins/jquery-ui/jquery-ui.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/global/plugins/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/global/plugins/datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'assets/global/plugins/datatables/dataTables.colVis.js' %}"></script>
+    <script src="{% static 'assets/global/plugins/bootstrap-daterangepicker/moment.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js' %}" type="text/javascript"></script>
+
+    <!-- END CORE PLUGINS -->
+
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="{% static 'assets/global/scripts/metronic.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/admin/layout/scripts/layout.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/admin/layout/scripts/quick-sidebar.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/admin/layout/scripts/demo.js' %}" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <script>
+        jQuery(document).ready(function () {
+            Metronic.init(); // init metronic core componets
+            Layout.init(); // init layout
+            QuickSidebar.init(); // init quick sidebar
+            Demo.init(); // init demo features
+        });
+    </script>
+</body>
+
+</html>
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $(document).on('keypress', '.alpha', function (event) {
+            var regex = new RegExp("^[a-zA-z ]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                return true;
+            }
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(document).on('keypress', '.username', function (event) {
+            var regex = new RegExp("^[a-zA-z0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                return true;
+            }
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(document).on('keypress', '.alphanumeric', function (event) {
+            var regex = new RegExp("^[a-zA-z0-9 ]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                return true;
+            }
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(document).on('keypress', '.numeric', function (event) {
+            var regex = new RegExp("^[0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                return true;
+            }
+            if (event.which == 46 && $(this).val().indexOf('.') != -1) {
+                event.preventDefault();
+                return false;
+            }
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(document).on('keypress', '.mobile', function (event) {
+            var regex = new RegExp("^[0-9]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                return true;
+            }
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(document).on('keypress', '.phone', function (event) {
+            var regex = new RegExp("^[0-9-]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (event.which == 8 || event.keyCode == 9 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40) {
+                return true;
+            }
+            if (event.which == 45 && $(this).val().indexOf('-') != -1) {
+                event.preventDefault();
+                return false;
+            }
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $('.messages').delay(5000).fadeOut('slow');
+        $(".checkall").on("click", function () {
+            $('#select_all').removeAttr('checked');
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.numeric').bind("cut copy paste", function (e) {
+            e.preventDefault();
+        });
+    });
+    function admindropdownmenu() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>

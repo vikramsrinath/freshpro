@@ -1,0 +1,22 @@
+.fws2{position:relative;background:#000;width:100%;overflow:hidden;z-index:0;}
+.fws2 .slider_container{}
+.fws2 .slide{display:none;position:absolute;top:0;left:0;z-index:0;width:100%;}
+.fws2 .slide img{width:100%;float:left;}
+.fws2 .slidePrev{background:#000;width:50px;height:50px;position:absolute;top:50%;left:-50px;opacity:0.5;z-index:10;display:none;}
+.fws2 .slidePrev i{width:50px;height:50px;float:left;background-position:50% 50%;background-repeat:no-repeat;cursor:pointer;font-size:32px;color:#FFF;line-height:1.7;text-align:center;}
+.fws2 .slideNext{background:#000;width:50px;height:50px;position:absolute;top:50%;right:-50px;opacity:0.5;z-index:10;display:none;}
+.fws2 .slideNext i{width:50px;height:50px;float:left;background-position:50% 50%;background-repeat:no-repeat;cursor:pointer;font-size:32px;color:#FFF;line-height:1.7;text-align:center;}
+.fws2 .timers{height:4px;position:absolute;bottom:15px;right:0;z-index:3;}
+.fws2 .timer{height:4px;width:40px;background-color:#000;float:left;margin-right:10px;}
+.fws2 .progress{height:4px;width:0%;background-color:#FC3;float:left;}
+.fws2 .bullets{position:absolute;bottom:-50px;z-index:3;width:100%;text-align:center;}
+.fws2 .bullet{display:inline-table;cursor:pointer;padding:0 2px;}
+.fws2 .bullet i{color:#fff;font-size:20px;line-height:1;-webkit-transition:color .25s ease-out;transition:color .25s ease-out;}
+.fws2 .bullet.active i, .fws2 .bullet:hover i{color:transparent;border:solid 1px #fff;border-radius:40px;}
+.fws2 .slide_content{top:0;left:0;position:absolute;width:100%;height:100%;}
+.fws2 .slide_content_wrap{left:0;right:0;margin:0 auto!important;display:none;}
+.fws2 .slide_content_wrap .slide_content_wrapTxt{text-align:center;color:#fff;font-family:Calisto MT;font-weight:bold;}
+.fws2 .title{opacity:0;color:#fff;font-size:36px;background:#000;padding:10px;float:left;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:400;}
+.fws2 .description{opacity:0;color:#FC3;font-size:18px;background:#000;padding:10px;clear:both;float:left;margin-top:2px;line-height:24px;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:400;}
+.fws2 .readmore{opacity:0;clear:both;float:left;text-transform:uppercase;font-size:10px;color:#919191;background:#000;padding:10px;text-decoration:none;margin-top:2px;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:400;-webkit-transition:color .25s ease-out;transition:color .25s ease-out;}
+.fws2 .readmore:hover{color:#fff;}

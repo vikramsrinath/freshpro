@@ -1,0 +1,15 @@
+language: python
+
+python: 
+  - "3.6"
+  
+env:
+  - DJANGO=2.0
+
+install:
+  - pip install django==$DJANGO
+  - python -m venv myvenv
+  - source myvenv/bin/activate
+
+script: 
+  - python manage.py test

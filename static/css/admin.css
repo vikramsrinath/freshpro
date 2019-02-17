@@ -1,0 +1,206 @@
+@import url('font-awesome.min.css');
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+.adminFooter{
+	padding: 15px 0;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	color: #a0938a;
+    font-size: 12px;
+}
+.adminFooter a{
+    color: #ff9c00;
+}
+.adminFooter a:hover{
+    color: #fff;
+}
+.LoginPanel{
+	background: #fff;
+	float: none;
+	border: solid 1px #ddd;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.2);
+}
+.LoginPanel h5{
+	text-transform: uppercase;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 25px;
+	color:#333;
+}
+h2{
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+.control-label{
+	text-align: left!important;
+	font-family: 'Arial';
+}
+.innerBxPanel{
+    background: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.table > thead > tr > th{
+	font-family: 'Arial';
+	color: #fff;
+	background: rgb(0,158,195);
+	background: -moz-linear-gradient(top,  rgba(0,158,195,1) 0%, rgba(0,183,234,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,158,195,1)), color-stop(100%,rgba(0,183,234,1)));
+	background: -webkit-linear-gradient(top,  rgba(0,158,195,1) 0%,rgba(0,183,234,1) 100%);
+	background: -o-linear-gradient(top,  rgba(0,158,195,1) 0%,rgba(0,183,234,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(0,158,195,1) 0%,rgba(0,183,234,1) 100%);
+	background: linear-gradient(to bottom,  rgba(0,158,195,1) 0%,rgba(0,183,234,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#009ec3', endColorstr='#00b7ea',GradientType=0 );
+}
+.table-responsive{
+	position: relative;
+}
+.btnPosition{
+	position: absolute;
+	right: 0;
+	top: 2px;
+}
+.posRelative{
+	position: relative;
+}
+.boxStyle{
+	display: block;
+	position: relative;
+	background: #1a9abb;
+	color: #fff;
+	padding: 10px;
+	border-radius: 3px;
+	margin-bottom: 15px;
+}
+.boxStyle:hover{
+	text-decoration: none;
+	color: #fff;
+	background: #333;
+	transform:scale(1.1);
+	-moz-transform:scale(1.1);
+	-webkit-transform:scale(1.1);
+}
+.boxStyle h4{
+	font-size: 14px;
+}
+.boxStyle span{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: #fff;
+	color: #333;
+	padding: 10px;
+	border-radius: 50px;
+	font-weight: bold;
+	font-size: 15px;
+}
+@media (min-width:768px){
+	.boxStyle{
+		height: 110px;
+	}
+}
+@media (min-width:992px){
+	.boxStyle{
+		height: 120px;
+	}
+}
+@media (min-width:1200px){
+	.boxStyle{
+		height: 100px;
+	}
+}
+body {
+	background: #0c1514;
+	color: #fff;
+  }
+  h1 {
+	color: #63c5bc;
+  }
+  .faded {
+	color: #777;
+  }
+  #quiz-counter {
+	color: #88449a;
+  }
+  .quiz-container {
+	  padding: 0.25em;
+	  max-width: 650px;
+	  margin: 1em auto;
+  }
+  
+  .quiz-container a {
+	  text-decoration: none;
+	  color: #333;
+  }
+  
+  #quiz-header,
+  #quiz-start-screen,
+  #quiz-results-screen,
+  #quiz-counter {
+	  text-align: center;
+  }
+  
+  .question {
+	  font-size: 1.25em;
+  }
+  
+  .answers {
+	  list-style: none;
+	  padding: 0;
+  }
+  
+  .answers a {
+	  display: block;
+	  padding: 0.5em 1em;
+	  margin-bottom: 0.5em;
+	  background: #fff;
+  }
+  
+  .answers a.correct {
+	  background: #090;
+  }
+  .answers a.incorrect {
+	  background: #c00;
+  }
+  
+  .answers a.correct,
+  .answers a.incorrect {
+	  color: #fff;
+  }
+  
+  #quiz-controls {
+	  background: #63c5bc;
+	  color: #111;
+	  padding: 0.25em 0.5em 0.5em;
+	  text-align: center;
+  }
+  
+  #quiz-response {}
+  #quiz-results {
+	  font-size: 1.25em;
+  }
+  
+  #quiz-buttons a,
+  .quiz-container .quiz-button {
+	  display: inline-block;
+	  padding: 0.5em 1em;
+	  background: #88449a;
+	  color: #fff;
+  }
+  #quiz-buttons a {
+	  background: #fff;
+	  color: #333;
+  }
+  
+  /* Quiz State Overrides */
+  
+  .quiz-results-state #quiz-controls {
+	  background: none;
+	  padding: 0;
+  }
+  .quiz-results-state #quiz-buttons a {
+	  background: #88449a;
+	  color: #fff;
+  }

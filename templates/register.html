@@ -1,0 +1,246 @@
+{% extends "layout/admin.html" %}
+
+{% block title %}Create User | PEnhancer{% endblock %}
+
+{% block body_block %}
+<style>
+    .inputError, .inputError:focus {
+    border: 1px solid #a94442;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #ce8483;
+}
+</style>
+<div class="row">
+    <div class="col-sm-6">
+        <h3 class="page-title">Add User</h3>
+    </div>
+    <div class="col-sm-6 text-right"></div>
+</div>
+<!-- END PAGE HEADER-->
+<div class="row">
+    <div class="text-center">
+        {% if messages %}
+        <div class="col-md-12 col-sm-12 messages">
+            {% for message in messages %}
+            <span {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    <form id="userform" action="/adduser/" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="disabledTextInput">User Name:</label>
+                            <div class="input-group my-groupunits"><input id="username" class="form-control validate"
+                                    name="username" type="text" /></div>
+                        </div>
+                    </div>
+                    <!-- <input id="username" class="form-control validate" name="username" type="hidden" /> -->
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="disabledTextInput">Email <span style="color:red">*</span>:</label>
+                            <div class="input-group my-groupunits full-width">
+                                <input name="email" autocomplete="off" maxlength="50" class="form-control validate" id="email"
+                                    required="required" type="text">
+                                <span class="input-group-btn"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="disabledTextInput">First Name <span style="color:red">*</span>:</label>
+                            <div class="input-group my-groupunits full-width">
+                                <input name="first_name" autocomplete="off" class="form-control validate alpha" id="first_name"
+                                    required="required" type="text">
+                                <span class="input-group-btn"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="disabledTextInput">Last Name <span style="color:red">*</span>:</label>
+                            <div class="input-group my-groupunits full-width">
+                                <input name="last_name" autocomplete="off" class="form-control validate alpha" id="last_name"
+                                    required="required" type="text">
+                                <span class="input-group-btn"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="disabledTextInput">Password <span style="color:red">*</span>:</label>
+                            <div class="input-group my-groupunits full-width">
+                                <input name="password" id="password" autocomplete="off" class="form-control validate"
+                                    id="password" required="required" type="password">
+                                <span class="input-group-btn"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="disabledTextInput">Confirm Password <span style="color:red">*</span>:</label>
+                            <div class="input-group my-groupunits full-width">
+                                <input name="password2" autocomplete="off" class="form-control" id="password2" required="required"
+                                    type="password">
+                                <span class="input-group-btn"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="disabledTextInput">Subscription Type <span style="color:red">*</span>:</label>
+                            <div class="">
+                                <select id="accounttype" name="accounttype" class="form-control" title="">
+                                    <option value="">Select</option>
+                                    <option value="Basic" selected="select">Basic</option>
+                                    <option value="Starter">Starter</option>
+                                    <option value="Advance">Advance</option>
+                                    <option value="Expert">Expert</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="disabledTextInput">Industry <span style="color:red">*</span>:</label>
+                            <div class="">
+                                <select id="industry" name="industry" class="form-control" title="">
+                                    <option value="">Select</option>
+                                    {% for industry in industry_list %}
+                                    <option value="{{ industry.industry_id }}">{{ industry.industry_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="disabledTextInput">Client <span style="color:red">*</span>:</label>
+                            <div class="">
+                                <select id="client" name="accounttype" class="form-control" title="" multiple>
+                                    <option value="">Select</option>
+                                    <option value="Walmart" selected="select">Walmart</option>
+                                    <option value="Amazon">Amazon</option>
+                                    <option value="Tesla">Tesla</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            </div>
+
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pt30 border-top">
+                            <div class="middle_headerbtn">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary grey-cascade" onclick="myFunction()">Cancel</button>
+                                </div>
+                                <button type="submit" class="btn btn-success" formnovalidate="formnovalidate" id="btnsave">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form>
+                <style type="text/css">
+                    .errmsg {
+                        color: #FF0000;
+                        margin-right: 200px;
+                        float: right;
+                        text-align: left;
+                    }
+
+                    #userform label.error {
+                        margin-left: 20px;
+                        width: auto;
+                        display: inline;
+                        color: #FF0000;
+                    }
+                </style>
+                <script type="text/javascript" class="init">
+                    $(document).ready(function () {
+                        $('select[name=industry]').change(function () {
+                            industry_id = $(this).val();
+                            request_url = '/getclients/' + industry_id + '/';
+                            $.ajax({
+                                url: request_url,
+                                success: function (data) {
+                                    alert(data);
+                                    $.each(data, function (index, text) {
+                                        $('select[name=accounttype]').append(
+                                            $('<option></option>').val(index).html(text)
+                                        );
+                                    });
+                                }
+                            });
+                            return false;
+                        })
+
+                        $("#userform").validate({
+                            rules: {
+                                username: "required",
+                                email: {
+                                    required: true,
+                                    email: true
+                                },
+                                first_name: "required",
+                                last_name: "required",
+                                password: "required",
+                            },
+                            messages: {
+                                username: "Please enter User Name",
+                                email: "Please enter Email",
+                                first_name: "Please Enter First Name",
+                                last_name: "Please Enter Last Name",
+                                password: "Please Enter Password",
+                            }
+                        })
+                    });
+                    function myFunction() {
+                        window.location.assign("/userlist/")
+                    }
+                    $(document).ready(function () {
+                        $("#last_name").keyup(function () {
+
+                            var first_name = $('#first_name').val();
+                            var last_name = $('#last_name').val();
+                            var timestamp = Math.floor(10000 + Math.random() * 90000);
+                            var Test = first_name + '_' + last_name + '_' + timestamp;
+                            $("#username").val(Test);
+                        });
+                    });
+                    $(document).ready(function () {
+                        $("#btnsave").click(function () {
+                            var password = $('#password').val();
+                            var password2 = $('#password2').val();
+                            if (password != password2) {
+                                alert("Password And Confirm Password Not Match");
+                                return false;
+                            }
+                        });
+                    });
+                </script>
+                {% endblock %}

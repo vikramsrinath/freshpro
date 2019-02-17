@@ -1,0 +1,659 @@
+{% extends "layout/admin.html" %}
+
+{% block title %} Create Assessment {% endblock %}
+{% load staticfiles %}
+{% block body_block %}
+<style>
+  .no-sort { pointer-events: none!important; cursor: default!important; }
+.no_paginate{bottom:-50px!important;}
+.btn-xs {
+font-size: 13px;
+line-height: 1.5;
+padding: 3px 21px 5px;
+width: 350px;
+}
+</style>
+<div class="row">
+  <div class="col-sm-6">
+    <h3 class="page-title">Create Assessment</h3>
+  </div>
+  <!-- <div class="col-sm-6 text-right">
+    <a href="/register/" class="btn btn-success"><i class="fa fa-plus"></i>Create User</a>
+  </div> -->
+</div>
+<div class="row">
+  <div class="text-center">
+    {% if messages %}
+    <div class="col-md-12 col-sm-12 messages">
+      {% for message in messages %}
+      <span {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <div class="clearfix"></div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="disabledTextInput">Client <span style="color:red">*</span>:</label>
+          <div class="">
+            <select id="client" name="client" class="form-control" title="">
+              <option value="">Select</option>
+              {% for client in client_list %}
+              <option value="{{ client.id }}">{{ client.client_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <div class="middle_headerbtn">
+              <div class="btn-group">
+                <button id="create" type="button" class="btn btn-primary btn-success">Create</button>
+              </div>
+              <!-- <button type="
+                  submit" class="btn btn-success" formnovalidate="formnovalidate" id="btnsave">Save</button>  -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix">
+    <!-- <div class="row"> -->
+    <div id="score">
+      <label>ClientName : </label> <label id="clientname"></label>
+      <br />
+      <label>Score :</label> <label id="scorevalue"></label>
+
+      <!-- </div> -->
+    </div>
+    <div class="clearfix">
+      <div id="accordian">
+        <ul id="my-accordion" class="accordionjs">
+
+          <!-- Section 1 -->
+          <li>
+            <div>Business Development</div>
+            <div>
+              <fieldset class="form-question">
+                <legend>Growth/Business Plan in place</legend>
+                <span>
+                  <input type="radio" name="business1" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="business1" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Research & Development</legend>
+                <span>
+                  <input type="radio" name="business2" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="business2" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Business Model used</legend>
+                <span>
+                  <input type="radio" name="business3" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="business3" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Industry/Product Knowledge</legend>
+                <span>
+                  <input type="radio" name="business4" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="business4" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Professional Development</legend>
+                <span>
+                  <input type="radio" name="business5" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="business5" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+
+              <!-- Section content here. -->
+            </div>
+          </li>
+
+          <!-- Section 2 -->
+          <li>
+            <div>Financial Ability</div>
+            <div>
+              <fieldset class="form-question">
+                <legend>Firm Pricing Strategy</legend>
+                <span>
+                  <input type="radio" name="finance1" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="finance1" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Profit Margins of 10%</legend>
+                <span>
+                  <input type="radio" name="finance2" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="finance2" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Consistent Revenue</legend>
+                <span>
+                  <input type="radio" name="finance3" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="finance3" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>ROI of at least 20%</legend>
+                <span>
+                  <input type="radio" name="finance4" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="finance4" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Close Rate of 10% or <'20 day conversion</legend> <span>
+                    <input type="radio" name="finance5" value="no" />
+                    <label for="more-no">No</label>
+                    </span>
+                    <span>
+                      <input type="radio" name="finance5" value="yes" />
+                      <label for="more-yes">Yes</label>
+                    </span>
+              </fieldset>
+              <!-- Section content here. -->
+            </div>
+          </li>
+
+          <!-- Section 3 -->
+          <li>
+            <div>Marketing</div>
+            <div>
+              <fieldset class="form-question">
+                <legend>Active CRM</legend>
+                <span>
+                  <input type="radio" name="marketing1" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="marketing1" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Strong Touch point Strategy</legend>
+                <span>
+                  <input type="radio" name="marketing2" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="marketing2" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Marketing Plan of Action</legend>
+                <span>
+                  <input type="radio" name="marketing3" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="marketing3" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Industry Position</legend>
+                <span>
+                  <input type="radio" name="marketing4" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="marketing4" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Active So-Lo-Mo Methods</legend>
+                <span>
+                  <input type="radio" name="marketing5" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="marketing5" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <!-- Section content here. -->
+            </div>
+          </li>
+
+          <li>
+            <div>Human Capital </div>
+            <div>
+              <fieldset class="form-question">
+                <legend>Dual Team Structure (Plan/Do)</legend>
+                <span>
+                  <input type="radio" name="human1" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="human1" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Sponsors/Investors</legend>
+                <span>
+                  <input type="radio" name="human2" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="human2" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Promo Partners</legend>
+                <span>
+                  <input type="radio" name="human3" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="human3" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Consistent Clients</legend>
+                <span>
+                  <input type="radio" name="human4" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="human4" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Engagement Rate of 8% .. Calculation is below</legend>
+                <span>
+                  <input type="radio" name="human5" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="human5" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Social Proof/Testimonies</legend>
+                <span>
+                  <input type="radio" name="human6" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="human6" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <!-- Section content here. -->
+            </div>
+          </li>
+
+          <li>
+            <div>Technology</div>
+            <div>
+              <fieldset class="form-question">
+                <legend>Online Search ability</legend>
+                <span>
+                  <input type="radio" name="technology1" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="technology1" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Website Activity/SEO</legend>
+                <span>
+                  <input type="radio" name="technology2" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="technology2" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+              <fieldset class="form-question">
+                <legend>Use for Streamlining</legend>
+                <span>
+                  <input type="radio" name="technology3" value="no" />
+                  <label for="more-no">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="technology3" value="yes" />
+                  <label for="more-yes">Yes</label>
+                </span>
+              </fieldset>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- <form action="?" id="myform">
+      <fieldset class="form-question">
+        <legend>Would you like to see another question?</legend>
+        <span>
+          <input type="radio" name="more" value="no" id="more-no" />
+          <label for="more-no">No</label>
+        </span>
+        <span>
+          <input type="radio" name="more" value="yes" id="more-yes" />
+          <label for="more-yes">Yes</label>
+        </span>
+      </fieldset>
+      <fieldset data-depends-on="more=yes">
+        <div class="form-question">
+          <label for="extra">What else would you like to add?</label>
+          <input type="text" name="extra" id="extra" />
+        </div>
+      </fieldset>
+    </form> -->
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="clearfix"></div>
+    <script>
+      $(document).ready(function () {
+        $('#example').DataTable({
+          "ordering": true,
+          dom: 'C<"clear">lfrtip',
+          colVis: {
+            "align": "right",
+            exclude: [0, 1]
+          },
+          "lengthMenu": [[50, 100, 200, -1], [50, 100, 200, "All"]],
+          "pageLength": 50,
+          "order": []
+        });
+        var rowCount = $('#example >tbody >tr').length;
+        if (rowCount < 50) {
+          $("#example_length").addClass("no_paginate");
+          $('#example_paginate').hide();
+        }
+      });
+      function delete_confirm() {
+        var status = confirm('Do you really want to Delete?');
+        if (status == false) {
+          return false;
+        }
+        else {
+          $("#MasterDeleteQuoteListAjaxForm").submit();
+        }
+
+      }
+      function checkAll() {
+        var checkboxes = document.getElementsByTagName('input');
+        var val = null;
+        for (var i = 0; i < checkboxes.length; i++) {
+          if (checkboxes[i].type == 'checkbox') {
+            if (val === null) val = checkboxes[i].checked;
+            checkboxes[i].checked = val;
+          }
+        }
+      }
+    </script>
+    <script>
+      jQuery(document).ready(function ($) {
+        $("#accordian").hide();
+        $("#score").hide();
+        $("#my-accordion").accordionjs();
+        $("#client").change(function () {
+          $("#accordian").show();
+          if ($('option:selected', this).text() == "Select") {
+            $("#accordian").hide();
+            $("#score").hide();
+          }
+        });
+        $("#create").click(function () {
+          var business1 = 0;
+          var business2 = 0;
+          var business3 = 0;
+          var business4 = 0;
+          var business5 = 0;
+          var finance1 = 0;
+          var finance2 = 0;
+          var finance3 = 0;
+          var finance4 = 0;
+          var finance5 = 0;
+          var marketing1 = 0;
+          var marketing2 = 0;
+          var marketing3 = 0;
+          var marketing4 = 0;
+          var marketing5 = 0;
+          var human1 = 0;
+          var human2 = 0;
+          var human3 = 0;
+          var human4 = 0;
+          var human5 = 0;
+          var human6 = 0;
+          var technology1 = 0;
+          var technology2 = 0;
+          var technology3 = 0;
+
+          var businessScore = 0;
+          var financeScore = 0;
+          var marketingScore = 0;
+          var humanScore = 0;
+          var technologyScore = 0;
+
+          if ($('input[name=business1]:checked').val() == "yes") {
+            bussiness1 = 1;
+            businessScore++;
+          }
+          if ($('input[name=business2]:checked').val() == "yes") {
+            business2 = 1;
+            businessScore++;
+          }
+          if ($('input[name=business3]:checked').val() == "yes") {
+            business3 = 1;
+            businessScore++;
+          }
+          if ($('input[name=business4]:checked').val() == "yes") {
+            business4 = 1;
+            businessScore++;
+          }
+          if ($('input[name=business5]:checked').val() == "yes") {
+            business5 = 1;
+            businessScore++;
+          }
+
+          // finance 
+
+          if ($('input[name=finance1]:checked').val() == "yes") {
+            finance1 = 1;
+            financeScore++;
+          }
+          if ($('input[name=finance2]:checked').val() == "yes") {
+            finance2 = 1;
+            financeScore++;
+          }
+          if ($('input[name=finance3]:checked').val() == "yes") {
+            finance3 = 1;
+            financeScore++;
+          }
+          if ($('input[name=finance4]:checked').val() == "yes") {
+            finance4 = 1;
+            financeScore++;
+          }
+          if ($('input[name=finance5]:checked').val() == "yes") {
+            finance5 = 1;
+            financeScore++;
+          }
+
+          //marketing
+
+          if ($('input[name=marketing1]:checked').val() == "yes") {
+            marketing1 = 1;
+            marketingScore++;
+          }
+          if ($('input[name=marketing2]:checked').val() == "yes") {
+            marketing2 = 1;
+            marketingScore++;
+          }
+          if ($('input[name=marketing3]:checked').val() == "yes") {
+            marketing3 = 1;
+            marketingScore++;
+          }
+          if ($('input[name=marketing4]:checked').val() == "yes") {
+            marketing4 = 1;
+            marketingScore++;
+          }
+          if ($('input[name=marketing5]:checked').val() == "yes") {
+            marketing5 = 1;
+            marketingScore++;
+          }
+
+          //human
+
+
+          if ($('input[name=human1]:checked').val() == "yes") {
+            human1 = 1;
+            humanScore++;
+          }
+          if ($('input[name=human2]:checked').val() == "yes") {
+            human2 = 1;
+            humanScore++;
+          }
+          if ($('input[name=human3]:checked').val() == "yes") {
+            human3 = 1;
+            humanScore++;
+          }
+          if ($('input[name=human4]:checked').val() == "yes") {
+            human4 = 1;
+            humanScore++;
+          }
+          if ($('input[name=human5]:checked').val() == "yes") {
+            human5 = 1;
+            humanScore++;
+          }
+          if ($('input[name=human6]:checked').val() == "yes") {
+            human6 = 1;
+            humanScore++;
+          }
+          //technology
+
+
+          if ($('input[name=technology1]:checked').val() == "yes") {
+            technology1 = 1;
+            technologyScore++;
+          }
+          if ($('input[name=technology2]:checked').val() == "yes") {
+            technology2 = 1;
+            technologyScore++;
+          }
+          if ($('input[name=technology3]:checked').val() == "yes") {
+            technology3 = 1;
+            technologyScore++;
+          }
+          businessScore = businessScore * 4;
+          financeScore = financeScore * 5.6;
+          marketingScore = marketingScore * 4;
+          humanScore = humanScore * 3.6;
+          technologyScore = technologyScore * 3.3;
+          var totalScore = 0;
+          totalScore = businessScore + financeScore + marketingScore + humanScore + technologyScore;
+          totalScore = Math.round(totalScore);
+
+
+          $("#score").show();
+          $("#accordian").hide();
+          $("#clientname").text($('#client :selected').text());
+          $("#scorevalue").text(totalScore);
+          var clientval = $('#client :selected').val();
+          $('#client').prop('selectedIndex', 0);
+          data = {
+            businessScore: businessScore, financeScore: financeScore, marketingScore: marketingScore,
+            humanScore: humanScore, technologyScore: technologyScore, totalScore: totalScore, client: clientval
+          }
+          $.ajax({
+            type: "POST",
+            url: '/createassessment/',
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+              console.log(data);
+            }
+
+          });
+        });
+      });
+
+    </script>
+
+
+    <script type="text/javascript" class="init">
+      function changequotestatus(action) {
+        // alert(action);
+        var selectedArray = [];
+        var jsonarr = '';
+        var csrfmiddlewaretoken = $("input[name=csrfmiddlewaretoken]").val();
+        $('.checkall:checked').each(function () {
+          selectedArray.push(parseInt($(this).val()));
+        });
+        if (selectedArray.length == 0) {
+          alert('Please select at least one record.');
+          return false;
+        }
+        jsonarr = JSON.stringify(selectedArray);
+        var r = confirm("Are you sure you want to perform " + action + " action?");
+        if (r == true) {
+          $.redirect('/changeuseraction/', { 'ids': jsonarr, 'opt': action, 'csrfmiddlewaretoken': csrfmiddlewaretoken });
+        }
+        //alert(JSON.stringify(selectedArray));
+      }
+      function confirm_click() {
+        return confirm("You are about to delete an item. Continue?");
+      }
+    </script>
+
+    {% endblock %}

@@ -1,0 +1,524 @@
+{% extends "layout/admin.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body_block %}
+
+<!-- BEGIN PAGE HEADER-->
+<style>
+    .inputError, .inputError:focus {
+    border: 1px solid #a94442;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #ce8483;
+}
+
+
+/*-- Ali Rizvi on 15.06.2017 start --*/
+
+.fileContainer > label.error { display: initial !important; padding-left: 4px; position: absolute; left: 0px; top: 35px;}
+.fileContainer.outside { overflow: initial !important; margin-bottom: 30px;}
+
+/*-- Ali Rizvi on 15.06.2017 start --*/
+
+
+</style>
+<div class="row">
+    <div class="col-sm-6">
+        <h3 class="page-title">Update User</h3>
+    </div>
+    <div class="col-sm-6 text-right"></div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div class="clearfix"></div>
+{% for user in user_list %}
+<form id="edituserform" action="/edituser/{{user.id}}/" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+    <input id="user_id" name="user_id" autocomplete="off" value="{{user.id}}" type="hidden">
+    <input id="id" name="id" autocomplete="off" value="{{user.profile_id}}" type="hidden">
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <!-- <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="disabledTextInput">User Name:</label>
+                        <div class="input-group my-groupunits"><b>{{user.username}}</b></div>
+                    </div>
+                </div> -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Email <span style="color:red">*</span>:</label>
+                        <div class="input-group my-groupunits">
+                            <input name="email" readonly="readonly" autocomplete="off" maxlength="45" value="{{user.email}}"
+                                class="form-control validate" id="email" required="required" type="text">
+                            <span class="input-group-btn"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Contact Number <span style="color:red">*</span>:</label>
+                        <div class="input-group my-groupunits">
+                            <input name="contact_number" autocomplete="off" value="{{user.contact_number}}" class="form-control numeric validate"
+                                id="contact_number" required="required" type="text">
+                            <span class="input-group-btn"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="disabledTextInput">First Name <span style="color:red">*</span>:</label>
+                        <div class="input-group my-groupunits">
+                            <input name="first_name" autocomplete="off" value="{{user.first_name}}" class="form-control validate alpha"
+                                id="first_name" required="required" type="text">
+                            <span class="input-group-btn"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Last Name <span style="color:red">*</span>:</label>
+                        <div class="input-group my-groupunits">
+                            <input name="last_name" autocomplete="off" value="{{user.last_name}}" class="form-control validate alpha"
+                                id="last_name" required="required" type="text">
+                            <span class="input-group-btn"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Gender <span style="color:red">*</span>:</label>
+                        <div class="">
+                            <select id="gender" name="gender" class="form-control" title="">
+                                <option value="">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Date Of Birth <span style="color:red">*</span>:</label>
+                        <div class="input-group my-groupunits">
+                            <input name="dob" autocomplete="off" value="{{user.dob|date:'m-d-Y' }}" class="form-control validate"
+                                id="dob" required="required" type="text">
+                            <span class="input-group-btn"></span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Subscription Type <span style="color:red">*</span>:</label>
+                        <div class="">
+                            <select id="accounttype" name="accounttype" class="form-control" title="">
+                                <option value="">Select</option>
+                                <option value="Basic" selected="select">Basic</option>
+                                <option value="Starter">Starter</option>
+                                <option value="Advance">Advance</option>
+                                <option value="Expert">Expert</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Industry <span style="color:red">*</span>:</label>
+                        <div class="">
+                            <select id="industry" name="industry" class="form-control" title="">
+                                <option value="">Select</option>
+                                <option value="IT Services" selected="select">IT Services</option>
+                                <option value="Manifacturing">Manifacturing</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Client <span style="color:red">*</span>:</label>
+                        <div class="">
+                            <select id="client" name="accounttype" class="form-control" title="" multiple>
+                                <option value="">Select</option>
+                                <option value="Apptomate" selected="select">Apptomate</option>
+                                <option value="Hyundai">Hyundai</option>
+                                <option value="MRF">MRF</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Upload {%if user.picture %} <span style="color:red"></span>{%
+                            else %}<span style="color:red">*</span>{% endif %}:
+                            {%if user.picture%}
+                            <a style="float: right; margin-left: 40px;" href="#" data-toggle="modal" data-target="#myModal">View
+                                Image</a>
+                            {% endif %}
+                        </label>
+                        <div class="input-group my-groupunits">
+                            <input name="pre_picture" autocomplete="off" class="form-control" id="pre_picture" type="hidden"
+                                value="{{user.picture}}">
+
+                            {%if user.picture%}
+
+                            <input name="picture" autocomplete="off" class="file" id="picture" type="file" onchange="javascript:updateList()">
+                            {% else %}
+
+                            <input name="picture" autocomplete="off" class="" id="picture" required="required" type="file"
+                                onchange="javascript:updateList()">
+                            {% endif %}
+                            <span class="input-group-btn"></span>
+                            <span style="color: green;font-size: 12px;font-weight: 600;" id="fileList"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="disabledTextInput">Preference <span style="color:red">*</span>:</label>
+                        <div class="">
+                            <select id="category" name="category" class="form-control" multiple="multiple">
+                                {% autoescape off %}{{category_list}}{% endautoescape %}
+                            </select>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- <div class="row">
+                <div class="col-sm-12" style="background-color:#D3DCE3;">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h5><b>Address</b></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="disabledTextInput">Zip Code <span style="color:red">*</span>:</label>
+                                <div class="input-group my-groupunits">
+                                    <input name="zip_code" autocomplete="off" maxlength="10" value="{{user.zip_code}}"
+                                        class="form-control alphanumeric validate" id="zip_code" required="required"
+                                        type="text">
+                                    <span class="input-group-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="disabledTextInput">Address-Line 1: <span style="color:red">*</span>:</label>
+                                <div class="input-group my-groupunits">
+                                    <input name="address1" autocomplete="off" value="{{user.address1}}" class="form-control validate"
+                                        id="address1" required="required" type="text">
+                                    <span class="input-group-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="disabledTextInput">Address-Line 2:</label>
+                                <div class="input-group my-groupunits">
+                                    <input name="address2" autocomplete="off" value="{{user.address2}}" class="form-control validate"
+                                        id="address2" type="text">
+                                    <span class="input-group-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="disabledTextInput">City <span style="color:red">*</span>:</label>
+                                <div class="input-group my-groupunits">
+                                    <input name="city" autocomplete="off" value="{{user.city}}" class="form-control validate"
+                                        id="city" required="required" type="text">
+                                    <span class="input-group-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="disabledTextInput">State:</label>
+                                <div class="input-group my-groupunits">
+                                    <input name="state_code" autocomplete="off" value="{{user.state_iso}}" id="state_code"
+                                        type="hidden">
+                                    <input name="state" autocomplete="off" value="{{user.state}}" id="state" class="form-control validate"
+                                        type="text">
+                                    <span class="input-group-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="disabledTextInput">Country <span style="color:red">*</span>:</label>
+                                <div class="input-group my-groupunits">
+                                    <input name="country_list" autocomplete="off" value="{{country_list}}" id="country_list"
+                                        type="hidden">
+                                    <input name="country_code" autocomplete="off" value="{{user.country_iso}}" id="country_code"
+                                        type="hidden">
+                                    <input name="country" autocomplete="off" value="{{user.country}}" id="country"
+                                        class="form-control validate" type="text" readonly="true">
+                                    <span class="input-group-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>-->
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pt30 border-top">
+                        <div class="middle_headerbtn">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary grey-cascade" onclick="myFunction()">Cancel</button>
+                            </div>
+                            <button type="submit" class="btn btn-success" id="update_btn" formnovalidate="formnovalidate">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form>
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                    class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+                        </div>
+                        <div class="modal-body">
+                            {% if user.picture %}
+                            <img class="img-responsive" src="{{media_url}}{{user.picture}}">
+                            {% endif %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <script>
+                $(document).ready(function () {
+                    $('#dob').datepicker({
+                        defaultDate: new Date(),
+                        changeMonth: true,
+                        numberOfMonths: 1,
+                        dateFormat: 'mm-dd-yy',
+                        changeMonth: true,
+                        changeYear: true,
+                        yearRange: '1900:' + new Date().getFullYear(),
+                        maxDate: 1
+                    });
+
+                });
+            </script>
+            <style type="text/css">
+                .errmsg {
+                    color: #FF0000;
+                    margin-right: 200px;
+                    float: right;
+                    text-align: left;
+                }
+
+                #edituserform label.error {
+                    width: auto;
+                    display: block;
+                    color: #FF0000;
+                    margin-left: 0px;
+                    clear: both;
+                    margin-top: 2px;
+
+                }
+            </style>
+            <script type="text/javascript" class="init">
+                $(document).ready(function () {
+                    $("#edituserform").validate({
+                        rules: {
+                            email: {
+                                required: true,
+                                email: true
+                            },
+                            first_name: "required",
+                            last_name: "required",
+                            contact_number: "required",
+                            dob: "required",
+                            address1: "required",
+                            gender: "required",
+                            category: "required",
+                            zip_code: "required",
+                            country: "required",
+                            city: "required",
+
+                        },
+                        messages: {
+                            email: "Please Enter Email",
+                            first_name: "Please Enter First Name",
+                            last_name: "Please Enter Last Name",
+                            dob: "Please Enter DOB",
+                            contact_number: "Please Enter Contact Number",
+                            address1: "Please Enter Address",
+                            gender: "Please Select Gender",
+                            category: "Please Select Category",
+                            zip_code: "Please Enter Correct Zip Code",
+                            country: "We are Unable to Found Country",
+                            city: "We are Unable to Found City",
+                        }
+                    })
+                });
+            </script>
+            <script>
+                $("#country").change(function () {
+                    var cid = $(this).val();
+                    $.ajax({
+                        url: '/getajaxstate/',
+                        data: {
+                            'cid': cid
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.state) {
+                                $('#state').html(data.state);
+                            }
+                        }
+                    });
+
+                });
+                //$(document.body).on('change keyup keydown click', function(event) {
+                $("#zip_code").on('change keyup keydown click', function (event) {
+                    var cid = $(this).val();
+                    var country = $('#country_list').val();
+                    var clist = country.split(",")
+                    var cname = '';
+                    var city = '';
+                    var state = '';
+                    var ciso = '';
+                    var siso = '';
+                    var is_zip = 0;
+                    var district = '';
+                    $.ajax({
+                        url: 'http://maps.googleapis.com/maps/api/geocode/json?address=' + cid + '&sensor=true',
+                        dataType: 'json',
+                        success: function (data) {
+                            $.each(data['results'][0]['address_components'], function (index, value) {
+                                if (value['types'][0] == 'country') {
+                                    ciso = value['short_name']
+                                    cname = value['long_name'];
+
+                                }
+                                if (value['types'][0] == 'administrative_area_level_1') {
+                                    state = value['long_name'];
+                                    siso = value['short_name']
+                                }
+                                if (value['types'][0] == 'locality') {
+                                    city = value['long_name'];
+                                }
+
+                                if (value['types'][0] == 'administrative_area_level_2') {
+                                    district = value['long_name'];
+
+                                }
+                                if ((value['types'][0] == 'postal_code') && (value['long_name'] == cid)) {
+                                    is_zip = 1;
+                                }
+                            });
+                            if (($.inArray(ciso, clist) > -1) && (is_zip == 1)) {
+                                $('#country').val(cname);
+                                $('#state').val(state);
+                                $('#country_code').val(ciso);
+                                $('#state_code').val(siso);
+                                if (city) {
+                                    $('#city').val(city);
+                                }
+                                else {
+                                    $('#city').val(district);
+                                }
+
+                            }
+                            else {
+                                $('#country').val('');
+                                $('#state').val('');
+                                $('#country_code').val('');
+                                $('#state_code').val('');
+                                $('#city').val('');
+
+                            }
+                        }
+                    });
+
+                });
+                function myFunction() {
+                    window.location.assign("/userlist/")
+                }
+                updateList = function () {
+                    var input = document.getElementById('picture');
+                    var output = document.getElementById('fileList');
+                    for (var i = 0; i < input.files.length; ++i) {
+                        output.innerHTML += input.files.item(i).name;
+                    }
+                }
+
+                $(function () {
+                    $('#update_btn').bind('click', function () {
+                        // var txtVal =  $('#dob').val();
+                        // if(iisDate(txtVal))
+                        //     alert('Valid Date');
+                        // else
+                        //     alert('Invalid Date');
+                        //     return false;
+                    });
+
+                    function iisDate(txtDate) {
+                        var currVal = txtDate;
+                        if (currVal == '')
+                            return false;
+
+                        var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/; //Declare Regex
+                        var dtArray = currVal.match(rxDatePattern); // is format OK?
+
+                        if (dtArray == null)
+                            return false;
+
+                        //Checks for mm/dd/yyyy format.
+                        dtMonth = dtArray[1];
+                        dtDay = dtArray[3];
+                        dtYear = dtArray[5];
+                        // alert(dtMonth);
+                        // alert(dtDay) ;      
+                        // alert(dtYear);
+                        if (dtMonth < 1 || dtMonth > 12)
+                            return false;
+                        else if (dtDay < 1 || dtDay > 31)
+                            return false;
+                        else if ((dtMonth == 4 || dtMonth == 6 || dtMonth == 9 || dtMonth == 11) && dtDay == 31)
+                            return false;
+                        else if (dtMonth == 2) {
+                            var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+                            if (dtDay > 29 || (dtDay == 29 && !isleap))
+                                return false;
+                        }
+                        return true;
+                    }
+
+                });
+            </script>
+
+            {% endblock %}

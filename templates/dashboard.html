@@ -1,0 +1,396 @@
+{% extends "layout/admin.html" %}
+
+{% block title %}Welcome to Dashboard{% endblock %}
+
+{% block body_block %}
+<h3 class="page-title">
+    Dashboard <small>reports & statistics</small>
+</h3>
+<!-- END PAGE HEADER-->
+<!-- BEGIN DASHBOARD STATS -->
+<!--  {{rand}} -->
+<div class="row" style="display:none">
+    <div class="col-md-12 col-sm-12">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat blue-madison">
+                    <div class="visual">
+                        <i class="fa fa-search-plus"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_category}}
+                        </div>
+                        <div class="desc">
+                            Category
+                        </div>
+                    </div>
+                    <a class="more" href="/categorylist/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat purple-plum">
+                    <div class="visual">
+                        <i class="fa fa-globe"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_brand}}
+                        </div>
+                        <div class="desc">
+                            No. of Brand
+                        </div>
+                    </div>
+                    <a class="more" href="/brandlist/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat yellow">
+                    <div class="visual">
+                        <i class="fa fa-houzz"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_model}}
+                        </div>
+                        <div class="desc">
+                            Model
+                        </div>
+                    </div>
+                    <a class="more" href="/modellist/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat red-intense">
+                    <div class="visual">
+                        <i class="fa fa-bar-chart-o"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_product}}
+                        </div>
+                        <div class="desc">
+                            Product
+                        </div>
+                    </div>
+                    <a class="more" href="/productlist/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat green-haze">
+                    <div class="visual">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_review}}
+                        </div>
+                        <div class="desc">
+                            No. of Review
+                        </div>
+                    </div>
+                    <a class="more" href="/productreview/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat yellow">
+                    <div class="visual">
+                        <i class="fa fa-leaf"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_feature_lend}}
+                        </div>
+                        <div class="desc">
+                            Feature Product
+                        </div>
+                    </div>
+                    <a class="more" href="/featured_lend/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat red-pink">
+                    <div class="visual">
+                        <i class="fa fa-anchor"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_lend}}
+                        </div>
+                        <div class="desc">
+                            Lend
+                        </div>
+                    </div>
+                    <a class="more" href="/lend_list/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat grey">
+                    <div class="visual">
+                        <i class="fa fa-anchor"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_damage}}
+                        </div>
+                        <div class="desc">
+                            Damage Collection
+                        </div>
+                    </div>
+                    <a class="more" href="/damamage_collect/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat grey">
+                    <div class="visual">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_shipping}}
+                        </div>
+                        <div class="desc">
+                            No. of Shipping
+                        </div>
+                    </div>
+                    <a class="more" href="/ship_detail/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat blue-madison">
+                    <div class="visual">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_cc}}
+                        </div>
+                        <div class="desc">
+                            No. of Credit Card
+                        </div>
+                    </div>
+                    <a class="more" href="/credicardlist/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat purple">
+                    <div class="visual">
+                        <i class="fa fa-jsfiddle"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_news}}
+                        </div>
+                        <div class="desc">
+                            News
+                        </div>
+                    </div>
+                    <a class="more" href="/news/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat green-haze">
+                    <div class="visual">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number">
+                            {{total_user}}
+                        </div>
+                        <div class="desc">
+                            No. of Users
+                        </div>
+                    </div>
+                    <a class="more" href="/userlist/">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  <div class="col-md-4 col-sm-4">
+            <div class="row">
+                <h4 class="page-title">Recent Activity <small> User</small></h4>
+            </div>
+        </div> -->
+
+
+
+
+
+
+    <!--             <form action="/WebService/add_shipping_detail/" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_QgFkEWEMfMzsdIU4UkVuR8nr"
+    data-amount="999"
+    data-name="Demo Site"
+    data-description="Widget"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+</form> -->
+</div>
+<!-- END DASHBOARD STATS -->
+<div class="clearfix"></div>
+
+<div class="clearfix"></div>
+<!--  <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-share font-blue-steel hide"></i>
+                        <span class="caption-subject font-blue-steel bold uppercase">Recent Activities</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
+                        <ul class="feeds">
+                            <li>
+                                <div class="col1">
+                                    <div class="cont">
+                                        <div class="cont-col1">
+                                            <div class="label label-sm label-danger"><i class="fa fa-user"></i></div>
+                                        </div>
+                                        <div class="cont-col2">
+                                            <div class="desc">
+                                                Admin login
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <div class="date">
+                                        12-12-2017
+                                    </div>
+                                </div>
+                            </li>
+                               <li>
+                                <div class="col1">
+                                    <div class="cont">
+                                        <div class="cont-col1">
+                                            <div class="label label-sm label-warning"><i class="fa fa-bell-o"></i></div>
+                                        </div>
+                                        <div class="cont-col2">
+                                            <div class="desc">
+                                                Admin Create Category
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <div class="date">
+                                        12-12-2017
+                                    </div>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="scroller-footer">
+                        <div class="btn-arrow-link pull-right">
+                            <a href="#">See All Records</a>
+                            <i class="icon-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-share font-blue-steel hide"></i>
+                        <span class="caption-subject font-blue-steel bold uppercase">Recent Product</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="scroller" style="height: 300px;" data-always-visible="1" data-rail-visible="0">
+                        <ul class="feeds">
+                            <li>
+                                <div class="col1">
+                                    <div class="cont">
+                                        <div class="cont-col1">
+                                            <div class="label label-sm label-warning"><i class="fa fa-bell-o"></i></div>
+                                        </div>
+                                        <div class="cont-col2">
+                                            <div class="desc">
+                                               Moto g4 file from Moto
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <div class="date">12-12-2017</div>
+                                </div>
+                            </li>
+                              <li>
+                                <div class="col1">
+                                    <div class="cont">
+                                        <div class="cont-col1">
+                                            <div class="label label-sm label-warning"><i class="fa fa-bell-o"></i></div>
+                                        </div>
+                                        <div class="cont-col2">
+                                            <div class="desc">
+                                               Moto g4 file from Moto
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <div class="date">12-12-2017</div>
+                                </div>
+                            </li>  <li>
+                                <div class="col1">
+                                    <div class="cont">
+                                        <div class="cont-col1">
+                                           <div class="label label-sm label-warning"><i class="fa fa-bell-o"></i></div>
+                                        </div>
+                                        <div class="cont-col2">
+                                            <div class="desc">
+                                               Moto g4 file from Moto
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <div class="date">12-12-2017</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="scroller-footer">
+                        <div class="btn-arrow-link pull-right">
+                            <a href="#">See All Records</a>
+                            <i class="icon-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+<div class="clearfix"></div>
+{% endblock %}

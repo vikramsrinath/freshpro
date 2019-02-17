@@ -1,0 +1,72 @@
+
+.PrintArea {
+    margin: 20px 5px;
+    padding: 10px;
+    width: 400px;
+}
+.button {
+    background: none repeat scroll 0 0 #999999;
+    border: 1px solid blue;
+    color: #EEEEEE;
+    cursor: pointer;
+    padding: 3px 5px;
+    text-align: center;
+    width: 80px;
+}
+span.test {
+    color: red;
+}
+
+#Retain.PrintArea.area1 {
+    border: 1px solid #999;
+}
+
+.PrintArea.area1 {
+    border: solid 1px #ffb40f;
+}
+
+.PrintArea.area2 {
+    border: solid 1px #20ff58;
+}
+
+
+	.portlet > .portlet-title::before, .portlet > .portlet-title::after {
+    content: " ";
+    display: table;
+}
+*::after, *::before {
+    box-sizing: border-box;
+}
+.portlet.box.green > .portlet-title {
+    background-color: #26a69a;
+}
+.portlet.box > .portlet-title {
+    border-bottom: 0 none;
+    color: #fff;
+    margin-bottom: 0;
+    padding: 0 10px;
+}
+
+.col-md-4 {width:33%; margin-right:0.5%; float:left;}
+.col-md-4:last-child {margin-right:0px;}
+.portlet > .portlet-title { border-bottom: 0 none; color: #000; margin-bottom: 0; padding:8px 10px;  background-color: #26a69a; border:1px solid #000; text-align:center}
+.portlet.box > .portlet-body {background-color: #fff; padding: 10px; border:1px solid #000}
+.portlet > .portlet-title > .caption {
+    display: inline-block;
+    background:transparent;
+    font-size: 18px;
+    line-height: 18px;
+    padding: 10px 0;
+	color:#000;
+}
+.form-group {margin-bottom: 15px; position:relative; text-align:left;}
+.form-group:after {content:""; clear:both; display:block;}
+label {
+float:right;
+    font-weight: 700;
+    margin-bottom: 5px;
+	font-size: 14px;
+font-weight: 400; color: #333333; width:30%; }
+.col-md-6 {float:left; width:50%; color: #333333;
+    font-family: "Open Sans",sans-serif;
+    font-size: 13px; 

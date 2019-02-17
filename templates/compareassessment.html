@@ -1,0 +1,319 @@
+{% extends "layout/admin.html" %}
+
+{% block title %} Create Assessment {% endblock %}
+{% load staticfiles %}
+{% block body_block %}
+<style>
+  .no-sort { pointer-events: none!important; cursor: default!important; }
+.no_paginate{bottom:-50px!important;}
+.btn-xs {
+font-size: 13px;
+line-height: 1.5;
+padding: 3px 21px 5px;
+width: 350px;
+}
+.sidebar {
+  background: #fff9f9;
+  margin: 10px;
+  padding: 0 7px 0 7px;
+  border-radius: 10px;
+}
+
+.box1 {
+  display: block;
+  padding: 10px;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.box2 {
+  display: block;
+  padding: 10px;
+  text-align: justify;
+}
+td {
+  padding: 10px;
+}
+</style>
+<div class="row">
+  <div class="col-sm-6">
+    <h3 class="page-title">Compare Assessment</h3>
+  </div>
+  <!-- <div class="col-sm-6 text-right">
+    <a href="/register/" class="btn btn-success"><i class="fa fa-plus"></i>Create User</a>
+  </div> -->
+</div>
+<div class="row">
+  <div class="text-center">
+    {% if messages %}
+    <div class="col-md-12 col-sm-12 messages">
+      {% for message in messages %}
+      <span {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <div class="clearfix"></div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12">
+
+      <div class="row">
+        <div class="col-md-4">
+          <label for="disabledTextInput">Client 1<span style="color:red">*</span>:</label>
+          <div class="">
+            <select id="client1" name="client" class="form-control" title="">
+              <option value="">Select</option>
+              {% for client in client_list %}
+              <option value="{{ client.id }}">{{ client.client_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="disabledTextInput">Client 2<span style="color:red">*</span>:</label>
+          <div class="">
+            <select id="client2" name="client" class="form-control" title="">
+              <option value="">Select</option>
+              {% for client in client_list %}
+              <option value="{{ client.id }}">{{ client.client_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div>
+            <div class="middle_headerbtn">
+              <div class="btn-group">
+                <button id="compare" type="button" class="btn btn-primary btn-success">Compare</button>
+              </div>
+              <!-- <button type="
+                  submit" class="btn btn-success" formnovalidate="formnovalidate" id="btnsave">Save</button>  -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar">
+
+    <div class="box1">
+      <table id="table1">
+      </table>
+    </div>
+
+    <div class="box2">
+      <table id="table2">
+    </div>
+
+  </div>
+  <div class="clearfix"></div>
+
+
+  </table>
+  <!-- <div class="row"> -->
+  <!-- <div id="score">
+      <label>ClientName : </label> <label id="clientname"></label>
+      <br />
+      <label>Score :</label> <label id="scorevalue"></label>
+
+      </div>  
+  </div> -->
+  <div class="clearfix">
+
+
+    <!-- <form action="?" id="myform">
+      <fieldset class="form-question">
+        <legend>Would you like to see another question?</legend>
+        <span>
+          <input type="radio" name="more" value="no" id="more-no" />
+          <label for="more-no">No</label>
+        </span>
+        <span>
+          <input type="radio" name="more" value="yes" id="more-yes" />
+          <label for="more-yes">Yes</label>
+        </span>
+      </fieldset>
+      <fieldset data-depends-on="more=yes">
+        <div class="form-question">
+          <label for="extra">What else would you like to add?</label>
+          <input type="text" name="extra" id="extra" />
+        </div>
+      </fieldset>
+    </form> -->
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="clearfix"></div>
+  <script>
+    $(document).ready(function () {
+      $('#example').DataTable({
+        "ordering": true,
+        dom: 'C<"clear">lfrtip',
+        colVis: {
+          "align": "right",
+          exclude: [0, 1]
+        },
+        "lengthMenu": [[50, 100, 200, -1], [50, 100, 200, "All"]],
+        "pageLength": 50,
+        "order": []
+      });
+      var rowCount = $('#example >tbody >tr').length;
+      if (rowCount < 50) {
+        $("#example_length").addClass("no_paginate");
+        $('#example_paginate').hide();
+      }
+    });
+    function delete_confirm() {
+      var status = confirm('Do you really want to Delete?');
+      if (status == false) {
+        return false;
+      }
+      else {
+        $("#MasterDeleteQuoteListAjaxForm").submit();
+      }
+
+    }
+    function checkAll() {
+      var checkboxes = document.getElementsByTagName('input');
+      var val = null;
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].type == 'checkbox') {
+          if (val === null) val = checkboxes[i].checked;
+          checkboxes[i].checked = val;
+        }
+      }
+    }
+  </script>
+  <script>
+    jQuery(document).ready(function ($) {
+      $("#accordian").hide();
+      $("#score").hide();
+      $("#my-accordion").accordionjs();
+      $("#client").change(function () {
+        client = $('option:selected', this).val()
+        request_url = '/getassessment/' + client + '/';
+        $("table tr").remove();
+        $.ajax({
+          url: request_url,
+          success: function (data) {
+            $.each(data, function (index, text) {
+              var tr;
+              tr = $('<tr/>');
+              tr.append("<th> Total Score </th>");
+              tr.append("<th> Business Score </th>");
+              tr.append("<th> Finance Score </th>");
+              tr.append("<th> Marketing Score </th>");
+              tr.append("<th> Human Capital Score </th>");
+              tr.append("<th> Technology Score </th>");
+              $('table').append(tr);
+              tr = $('<tr/>');
+              tr.append("<td>" + data[index].total_score + " % </td>");
+              tr.append("<td>" + data[index].business_score + "</td>");
+              tr.append("<td>" + data[index].finance_score + "</td>");
+              tr.append("<td>" + data[index].human_score + "</td>");
+              tr.append("<td>" + data[index].marketing_score + "</td>");
+              tr.append("<td>" + data[index].technology_score + "</td>");
+              $('table').append(tr);
+            });
+          }
+        });
+        if ($('option:selected', this).text() == "Select") {
+          $("#accordian").hide();
+        }
+      });
+
+      $("#compare").click(function () {
+        var client1_val = $('#client1 :selected').val();
+        var client2_val = $('#client2 :selected').val();
+
+        request_url = '/getassessment/' + client1_val + '/';
+        $("#table1 tr").remove();
+        $("#table2 tr").remove();
+        $.ajax({
+          url: request_url,
+          success: function (data) {
+
+            $.each(data, function (index, text) {
+
+              var tr;
+              tr = $('<tr/>');
+              tr.append("<th> Total Score </th>");
+              tr.append("<th> Business Score </th>");
+              tr.append("<th> Finance Score </th>");
+              tr.append("<th> Marketing Score </th>");
+              tr.append("<th> Human Capital Score </th>");
+              tr.append("<th> Technology Score </th>");
+              $('#table1').append(tr);
+              tr = $('<tr/>');
+              tr.append("<td>" + data[index].total_score + " % </td>");
+              tr.append("<td>" + data[index].business_score + "</td>");
+              tr.append("<td>" + data[index].finance_score + "</td>");
+              tr.append("<td>" + data[index].human_score + "</td>");
+              tr.append("<td>" + data[index].marketing_score + "</td>");
+              tr.append("<td>" + data[index].technology_score + "</td>");
+              $('#table1').append(tr);
+            });
+          }
+        });
+
+        request_url = '/getassessment/' + client2_val + '/';
+        $.ajax({
+          url: request_url,
+          success: function (data) {
+
+            $.each(data, function (index, text) {
+
+              var tr;
+              tr = $('<tr/>');
+              tr.append("<th> Total Score </th>");
+              tr.append("<th> Business Score </th>");
+              tr.append("<th> Finance Score </th>");
+              tr.append("<th> Marketing Score </th>");
+              tr.append("<th> Human Capital Score </th>");
+              tr.append("<th> Technology Score </th>");
+              $('#table2').append(tr);
+              tr = $('<tr/>');
+              tr.append("<td>" + data[index].total_score + " % </td>");
+              tr.append("<td>" + data[index].business_score + "</td>");
+              tr.append("<td>" + data[index].finance_score + "</td>");
+              tr.append("<td>" + data[index].human_score + "</td>");
+              tr.append("<td>" + data[index].marketing_score + "</td>");
+              tr.append("<td>" + data[index].technology_score + "</td>");
+              $('#table2').append(tr);
+            });
+          }
+        });
+
+      });
+    });
+
+  </script>
+
+
+  <script type="text/javascript" class="init">
+    function changequotestatus(action) {
+      // alert(action);
+      var selectedArray = [];
+      var jsonarr = '';
+      var csrfmiddlewaretoken = $("input[name=csrfmiddlewaretoken]").val();
+      $('.checkall:checked').each(function () {
+        selectedArray.push(parseInt($(this).val()));
+      });
+      if (selectedArray.length == 0) {
+        alert('Please select at least one record.');
+        return false;
+      }
+      jsonarr = JSON.stringify(selectedArray);
+      var r = confirm("Are you sure you want to perform " + action + " action?");
+      if (r == true) {
+        $.redirect('/changeuseraction/', { 'ids': jsonarr, 'opt': action, 'csrfmiddlewaretoken': csrfmiddlewaretoken });
+      }
+      //alert(JSON.stringify(selectedArray));
+    }
+    function confirm_click() {
+      return confirm("You are about to delete an item. Continue?");
+    }
+  </script>
+
+  {% endblock %}
